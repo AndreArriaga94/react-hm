@@ -3,7 +3,7 @@ const rest = (a, b, ...argumentos) => {
   console.log(argumentos);
 }
 
-//rest(1, 2, 3, 4, 5, 6)
+rest(1, 2, 3, 4, 5, 6)
 
 const obj = {
   a: 1, b: 2, c: 3, d: 4
