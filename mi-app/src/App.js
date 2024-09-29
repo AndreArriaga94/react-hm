@@ -1,53 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react"
 
-const estilo2 = {
-  boxShadow: '0 5px 3px rgba(0,0,0,0.5)'
+class Input extends Component {
+    render(){
+        return(
+            <input
+                value={this.props.value}
+                onChange={this.props.onChange}
+                />
+        )
+    }
 }
 
-const estilo = ({bg = '#333'}) => ({
-  backgroundColor: bg,
-  color: '#fff',
-  padding: '10px 15px',
-  margin: '10px 15px',
-})
+class App extends Component{
+    state = {
+        nombre: '',
+        apellido: '',
+    }
 
-const Li = ({children}) => {
+    // updateNombre(v){
+    //     this.updateValues('nombre',v.target.value)
+    // }  
 
-  return (
-    <li style={estilo({bg:'#057'})} className='clase-li'>{children}</li>
-  )
+    updateValues = (prop, value) => {
+        this.setState({[prop]: value})
+    }
+
+    render(){
+        return(
+            <p>
+                Nombre completo: {`${this.state.nombre} ${this.state.apellido}`}
+                <Input 
+                    value={this.state.nombre} 
+                    onChange={e=> this.updateValues('nombre',e.target.value)}
+                    // onChange={this.updateNombre}
+                />
+                <Input 
+                    value={this.state.apellido} 
+                    onChange={e=> this.updateValues('apellido',e.target.value)}
+                />
+            </p>
+        )
+    }
 }
 
-const App = () => {
-  const valor = "Feliz"
-  return(
-    <ul style={{...estilo2, ...estilo({bg:'#799'})}} className='clase-css'>
-      <Li estado="Feliz">
-      valor de li
-      </Li>
-    </ul>
-  )
-}
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-export default App;
+export default App
